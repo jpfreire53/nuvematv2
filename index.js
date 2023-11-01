@@ -1,40 +1,19 @@
-const express = require("express"); //importa o módulo express neste arquivo
-const app = express(); //iniciando o express
+const express = require("express");
+const app = express();
+const port = 3000;
 
-//criando a rota inicial
-app.get("/", function(req,res){
-    res.send("<h1>Bem vindo ao meu site!</h1>");
-})
+app.get("/home", (req, res) => {
+  res.send("<h1>Página Inicial da aplicação</h1>");
+});
 
-//rota do cadastro de produtos
-app.get("/produtos", function(req,res){
-    res.send("<h1>Lista de Produtos!</h1>");
-})
+app.get("/about", (req, res) => {
+  res.send("<h1>Sobre Nós e sobre a aplicação</h1>");
+});
 
-//rota com parametro 
-app.get("/consulta/:parametro", function(req,res){
-    //req --> dados enviados pelo cliente
-    //res --> resposta enviada pelo servidor de volta ao cliente
-    res.send("retorno consulta:" + req.params.parametro);
-})
+app.get("/contact", (req, res) => {
+  res.send("<h1>Contato sobre nós</h1>");
+});
 
-//rota com parametro opcional
-app.get("/cadastro/:nome?", function(req,res){
-    //req --> dados enviados pelo cliente
-    var nome = req.params.nome;
-    if (nome){
-        res.send("<h1>produto " + nome + " criado!</h1>");
-    }else{
-        res.send("produto criado!");
-    }
-    
-})
-
-app.listen(process.env.PORT ?? 3000,function(erro){  // cria a aplicação na porta 4000
-    if (erro){
-        console.log("Erro ao Iniciar.");
-    }else{
-        console.log("Servidor Iniciado.");
-    }
-})
-
+app.listen(port, () => {
+  console.log("Rondando na Porta 3000");
+});
